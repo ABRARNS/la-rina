@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Riña</title>
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="logo.png">
+<style>
+    body{
+    background:#222;
+    color:white;
+    font-family:"Rock Salt",cursive;
+    text-align:center;
+}
+
+.d1{
+    max-width:900px;
+    margin:auto;
+    padding:20px;
+}
+
+.i1,
+img{
+    width:200px;
+    height:200px;
+    border-radius:20px;
+    display:block;
+    margin:10px auto;
+    border:2px solid white;
+}
+
+button{
+    font-family:"Rock Salt",cursive;
+    padding:12px 20px;
+    background:black;
+    color:white;
+    border:2px solid white;
+    border-radius:15px;
+    cursor:pointer;
+    transition:0.3s;
+    margin:10px;
+}
+
+button:hover{
+    background:white;
+    color:black;
+}
+
+.d2{
+    display:none;
+    flex-direction:column;
+    align-items:center;
+    gap:30px;
+}
+
+.d2-activate{
+    display:flex;
+    flex-direction: column;
+align-items: center;
+gap: 30px;
+}
+
+.chose_div{
+    border:2px solid white;
+    border-radius:20px;
+    padding:15px;
+    background:#333;
+     margin:10px;
+    display:flex;
+    flex-direction:column;   
+    align-items:center;     
+}
+
+.chose_div:hover{
+    background:#444;
+}
+h1{
+margin:20px 0 10px;
+}
+h2{
+    margin-bottom:20px;
+}
+h3{
+ margin:10px 0;
+}
+</style>
+</head>
+<body>
+    <div class="d1">
+     <img src="logo.png" class="i1">
+     <h1>Welcome To La Riña</h1>
+     <h2>Choose Your Map</h2>
+     <button id="smap">See Maps</button>
+    <div class="d2" id="d2"> 
+        <a href="La Riña.html">
+     
+      </a>
+      <div class="chose_div">
+      <img src="japan1.png">
+      <h3>Japan</h3>
+      <button id="map_chose_1">Choose Map</button>
+      <a href="La Riña.html">
+     <button>play</button>
+      </a>
+      </div>
+      <div class="chose_div">
+      <img src="spain_map1.png">
+      <h3>Spain 1</h3>
+      <button id="map_chose_2">Choose Map</button>
+      <a href="La Riña.html">
+     <button>play</button>
+      </a>
+      </div>
+      <div class="chose_div">
+      <img src="barca1.png">
+      <h3>Camp Nou</h3>
+      <button id="map_chose_4">Choose Map</button>
+      <a href="La Riña.html">
+     <button>play</button>
+      </a>
+      </div>
+      <div class="chose_div">
+      <img src="italy1.png">
+      <h3>Italy 1</h3>
+      <button id="map_chose_3">Choose Map</button>
+      <a href="La Riña.html">
+     <button>play</button>
+      </a>
+      </div>
+      
+      
+      
+    </div>
+    </div>
+<script type="module" src="map-chose.js"></script>
+</body>
+</html>

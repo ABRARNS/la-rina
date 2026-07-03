@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Riña</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<style>
+    body{
+    background:#222;
+    color:white;
+    font-family:"Rock Salt",cursive;
+    text-align:center;
+    
+}
+
+.d1{
+    max-width:900px;
+    margin:auto;
+    padding:20px;
+}
+
+.i1,
+img{
+    width:200px;
+    height:200px;
+    border-radius:20px;
+    display:block;
+    margin:10px auto;
+    border:2px solid white;
+}
+
+.btn{
+    
+    font-family:"Rock Salt",cursive;
+    padding:12px 20px;
+    background:black;
+    color:white;
+    border:2px solid white;
+    border-radius:15px;
+    cursor:pointer;
+    transition:0.3s;
+}
+.btn-1{
+    
+    font-family:"Rock Salt",cursive;
+    padding:12px 20px;
+    background:black;
+    color:white;
+    border:2px solid white;
+    border-radius:15px;
+    cursor:pointer;
+    transition:0.3s;
+}
+button:hover{
+    background:white;
+    color:black;
+}
+
+.d2{
+    
+    justify-content:center;
+    gap:30px;
+    margin-top:30px;
+    flex-wrap:wrap;
+}
+
+.d2-activate{
+    display:flex;
+}
+
+.chose_div{
+    border:2px solid white;
+    border-radius:20px;
+    padding:15px;
+    background:#333;
+     margin:10px;
+    display:flex;
+    flex-direction:column;   
+    align-items:center;     
+}
+
+.chose_div:hover{
+    background:#444;
+}
+h1{
+margin:20px 0 10px;
+}
+h2{
+    margin-bottom:20px;
+}
+h3{
+ margin:10px 0;
+}
+i{
+   font-size: 40px;
+    color: #25D366;
+}
+</style>
+</head>
+<body>
+    <div class="d1">
+        <div>
+            <div class="div">
+              <img src="logo.png" class="i1">
+        </div>
+          <h1>Welcome to LA RIñA</h1>
+          <h3>La Riña is a 2D top-down fighting game where players battle opponents in fast-paced matches. Easy to play, fun to master, and made for everyone.</h3>
+       <a href="map-chose.html" class="a">
+          <button  class="btn" id="b">
+            Play
+        </button>
+        </a>
+        <a href="see_controls.html" class="a">
+          <button  class="btn" id="b">
+            See Controls
+        </button>
+        </a>
+        
+        
+        
+        <h4>Channel</h4>
+        <a href="https://whatsapp.com/channel/0029Vb6vqas5K3zVDthqYs2U" target="_blank">
+    <i class="fa-brands fa-whatsapp whatsapp-icon"></i>
+</a>
+        <h4>Community</h4>
+        <a href="https://chat.whatsapp.com/CLu1Bkg8fQj3A6y8SO4eb5" target="_blank">
+    <i class="fa-brands fa-whatsapp whatsapp-icon"></i>
+        </a>
+        </div>
+       
+       
+       
+    </div>
+<script>
+    let bg1 = new Audio("./La Riña (official).mp3")
+    bg1.loop = true
+    bg1.volume = 0.8
+    addEventListener("click",()=>{
+        bg1.play()
+    })
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Simple Sprite Animation</title>
+<style>
+canvas{
+    border:2px solid black;
+}
+</style>
+</head>
+<body>
+
+<canvas></canvas>
+
+<script>
+const canvas = document.querySelector("canvas");
+const c = canvas.getContext("2d");
+
+canvas.width = 600;
+canvas.height = 600;
+
+const playerImg = new Image();
+playerImg.src = "shadow_dog.png";
+
+// Size of ONE frame
+const spriteWidth = 573;
+const spriteHeight = 523;
+
+// Run animation is on row 3
+const row = 3;
+
+// Run has 9 frames
+const totalFrames = 9;
+
+let frame = 0;
+
+playerImg.onload = function(){
+    animate();
+}
+
+function animate(){
+
+    c.clearRect(0,0,canvas.width,canvas.height);
+
+    // Crop position
+    let frameX = frame * spriteWidth;
+    let frameY = row * spriteHeight;
+
+    c.drawImage(
+        playerImg,
+        frameX,
+        frameY,
+        spriteWidth,
+        spriteHeight,
+        0,
+        0,
+        spriteWidth,
+        spriteHeight
+    );
+
+    // Go to next frame
+    frame++;
+
+    // Go back to frame 0 after frame 8
+    if(frame >= totalFrames){
+        frame = 0;
+    }
+
+    // Slow the animation a little
+    setTimeout(() => {
+        requestAnimationFrame(animate);
+    },100);
+}
+</script>
+
+</body>
+</html>
