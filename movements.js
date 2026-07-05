@@ -3,18 +3,22 @@ import{punchSound1,runSound1} from "./bgSounds.js"
 import{c,player,player2,canvas,health_box_2_width,health_box_2_height,health_box_1_width,health_box_1_height} from "./main.js"
 window.addEventListener('keydown',(e)=>{
     let key = e.code
-    console.log(key)
+    
     if(key === "KeyD" || key === "ArrowRight"){
+        player.facing = "right"
         player.status ="run"
         runSound1()
         player.position.x += player.speed
-        player.animation_status = "run_right"
+        player.animation_status = "run"
+        player.row = 3;
     }
     if(key === "KeyA" || key === "ArrowLeft"){
         player.status ="run";
+        player.facing = "left"
         runSound1()
         player.position.x -= player.speed
-        player.animation_status = "run_left"
+        player.animation_status = "run"
+        
     }
     
     
@@ -35,10 +39,11 @@ window.addEventListener('keydown',(e)=>{
         }
         }
         
-       
+       player.animation_status = "punch"
     }
     if(key === "KeyK"){
      player.Issave = true;
+     player.animation_status = "shield"
     } 
      
     
@@ -60,10 +65,14 @@ window.addEventListener('keydown',(e)=>{
     player2.position.x = 0;
    
 }
-    console.log(player2.health)
+   
 })
 window.addEventListener("keyup", (e) => {
     if (e.code === "KeyK") {
         player.Issave = false;
     }
+    if(e.code === "KeyA" || e.code === "KeyD" || e.code === "KeyJ"|| e.code === "ArrowLeft"|| e.code === "ArrowRight" || e.code === "KeyK"){
+        player.animation_status = "idle"
+    }
+
 });

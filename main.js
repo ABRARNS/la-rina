@@ -1,5 +1,5 @@
 import{entity}from "./entity.js";
-
+import {shadow}from "./charecter.js"
 import "./movements.js";
 import "./bgSounds.js";
 import "./ai_opponent.js"
@@ -23,6 +23,7 @@ import { new_map } from "./map_animation.js";
 const map = localStorage.getItem("map") || "first-map.png";
 
 new_map(map);
+console.log(shadow)
 // Steps to create player
 export const player = new entity({
     position:{x:200,y:ground_y},
@@ -32,7 +33,7 @@ export const player = new entity({
     damage:2,
     Issave:false,
     speed:10,
-
+    ...shadow
 })
 //create villan
 export const player2 = new entity({
@@ -43,6 +44,7 @@ export const player2 = new entity({
     damage:2,
     Issave:false,
     speed:2.5,
+    ...shadow
 })
 if(player.health <=0){
             player.health =0;

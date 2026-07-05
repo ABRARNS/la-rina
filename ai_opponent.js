@@ -1,103 +1,125 @@
-import { player, player2,canvas} from "./main.js";
-let timer =0;
-import { punchSound1,runSound1} from "./bgSounds.js";
+import { player, player2, canvas } from "./main.js";
+import { punchSound1, runSound1 } from "./bgSounds.js";
+
+let timer = 0;
+
 export function aiUpdate() {
-    timer++
-const LEFT_LIMIT = 50;
-const RIGHT_LIMIT = canvas.width - 70;
+    timer++;
+
+    const LEFT_LIMIT = 50;
+    const RIGHT_LIMIT = canvas.width - 70;
+
     if (!player || !player2) return;
-    let position1 = player.position.x
-    let position2 = player2.position.x
-     
-    let distance = Math.abs(player.position.x - player2.position.x);
-    
- 
-     if(player2.health < 50){
-    player2.status = "runaway";
-    runSound1()
-}
-else if(distance <= 37 && Math.random() > 0.5){
-    player2.status = "shield";
-    
-}
-else if(distance > 50){
-    player2.status = "chase";
-    runSound1()
-}
-else   if(distance < 20){
-    player2.status = "comeback";
-    runSound1()
-}
-    else{
+
+    let position1 = player.position.x;
+    let position2 = player2.position.x;
+    let distance = Math.abs(position1 - position2);
+
+    if (player2.health < 50) {
+        player2.status = "runaway";
+        player2.animation_status = "run";
+        runSound1();
+    }else if (distance > 50) {
+        player2.status = "chase";
+        player2.animation_status = "run";
+        runSound1();
+    }else if (distance < 20) {
+        player2.status = "comeback";
+        player2.animation_status = "run";
+        runSound1();
+    }else if (distance <= 37 && Math.random() > 0.5) {
+        player2.status = "shield";
+        player2.animation_status = "shield";
+    }else if (distance <= 37) {
     player2.status = "attack";
-    
-}
-    //status management
-    if(player2.status === "chase"){
-        if(position1> position2){
-            player2.position.x += player2.speed
-        } else{
-            player2.position.x -= player2.speed
-        }
-    }
-    if (player2.status === "comeback") {
-    if (player.position.x > player2.position.x) {
-        player2.position.x -= 2; 
-        
-        // small step back
+     player2.animation_status = "punch";
     } else {
-        player2.position.x += 2;
-         // small step backa
-    }}
-    if(player2.status === "attack"){
-    if(!player.Issave){
-       if(timer > 30){
-       if(Math.floor(Math.random() * 10) > 6 ){
-            punchSound1()
-            player.health -= player2.damage
-            
+     player2.status = "idle";
+    player2.animation_status = "idle";
+    }
+
+  if(player2.status === "chase") {
+        if (position1 > position2) {
+             player2.position.x += player2.speed;
+           player2.facing = "right";
+        } else {
+         player2.position.x -= player2.speed;
+        player2.facing = "left";
         }
-        timer=0
-         }
     }
-        
-     if(distance <= 37 ){
-     player2.Issave = true
-    
-}  else{
-    player2.Issave = false
-}
+
+    if(player2.status === "comeback") {
+        if(position1 > position2) {
+        player2.position.x -= 2;
+         player2.facing = "left";
+        } else {
+            player2.position.x += 2;
+            player2.facing = "right";
+        }
     }
+
+    if (player2.status === "attack") {
+
+        if (position1 > position2) {
+            player2.facing = "right";
+        } else {
+            player2.facing = "left";
+        }
+
+        if (!player.Issave) {
+            if (timer > 30) {
+                if (Math.floor(Math.random() * 10) > 6) {
+                    punchSound1();
+                    player.health -= player2.damage;
+                }
+                timer = 0;
+            }
+        }
+
+        if (distance <= 37) {
+            player2.Issave = true;
+        } else {
+            player2.Issave = false;
+        }
+    }
+
     if (player2.status === "runaway") {
-     if(distance <= 35){
-        if(!player.Issave){
-       if(timer > 30){
-       if(Math.floor(Math.random() * 10) > 6 ){
-            punchSound1()
-            player.health -= player2.damage
-            
+
+        if (distance <= 35) {
+        if (!player.Issave) {
+        if (timer > 30) {
+        if (Math.floor(Math.random() * 10) > 6) {
+                 punchSound1();
+                player.health -= player2.damage;
+                    }
+                timer = 0;
+            }
         }
-        timer=0
-         }
-    }
-     }
-        if (player.position.x > player2.position.x) {
-    if (player2.position.x >= LEFT_LIMIT) {
-        player2.position.x -= player2.speed * 2;
-        
-    }
-} else {
-    if (player2.position.x <= RIGHT_LIMIT) {
-        player2.position.x += player2.speed * 2;
+        }
+
+        if (position1 > position2) {
+            if (player2.position.x >= LEFT_LIMIT) {
+                player2.position.x -= player2.speed * 2;
+                player2.facing = "left";
+            }
+        } else {
+            if (player2.position.x <= RIGHT_LIMIT) {
+                player2.position.x += player2.speed * 2;
+                player2.facing = "right";
+            }
+        }
     }
 
-}
+    if (player2.status === "shield") {
 
-}
-if(player2.status === "shield"){
-    player2.Issave = true;
-} else{
-    player2.Issave = false;
-}
+        if (position1 > position2) {
+            player2.facing = "right";
+        } else {
+            player2.facing = "left";
+        }
 
+        player2.Issave = true;
+    } else {
+        player2.Issave = false;
     }
+}
