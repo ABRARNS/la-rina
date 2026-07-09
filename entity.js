@@ -1,6 +1,7 @@
-import{c} from "./main.js"
+
 export class entity{
-    constructor({position,health,status,animation_status,damage,Issave,speed,sprite,spriteHeight,spriteWidth,animations}){
+    constructor({position,health,status,animation_status,Issave,speed,damage,sprite,spriteHeight,spriteWidth,drawWidth,animations,
+    drawHeight}){
            this.position = position;
            this.health = health
            this.status = status
@@ -20,11 +21,43 @@ export class entity{
            this.row = 0;
            this.totalFrame = 0;
            this.facing = "right";
-      
+           this.drawHeight = drawHeight
+           this.drawWidth = drawWidth
 
     }
-   
+    //s = select c = charecyer
+   s_c(character) {
+    this.playerImg.src = character.sprite;
+    this.spriteWidth = character.spriteWidth;
+    this.spriteHeight = character.spriteHeight;
+    this.drawWidth = character.drawWidth;
+    this.drawHeight = character.drawHeight;
+    this.speed = character.speed;
+    this.damage = character.damage;
+    this.health = character.health;
+    this.animations = character.animations;
+    this.animation_status = "idle";
+    this.frame = 0;
+}
+// s = select e = enemy
+s_e(character) {
+    this.playerImg.src = character.sprite;
+    this.spriteWidth = character.spriteWidth;
+    this.spriteHeight = character.spriteHeight;
+    this.drawWidth = character.drawWidth;
+    this.drawHeight = character.drawHeight;
+    this.speed = character.speed;
+    this.damage = character.damage;
+    this.health = character.health;
+    this.animations = character.animations;
+    this.animation_status = "idle";
+    this.frame = 0;
+}
  draw(c) {
+    const currentAnimation = this.animations[this.animation_status];
+
+this.row = currentAnimation.row;
+this.totalFrame = currentAnimation.frames;
      let frameX = this.frame * this.spriteWidth;
            let frameY = this.row * this.spriteHeight;
    c.save();
@@ -36,10 +69,10 @@ export class entity{
     frameY,
     this.spriteWidth,
     this.spriteHeight,
-    -this.position.x - 70,
+    -this.position.x - this.drawWidth,
     this.position.y,
-     70,
-70
+    this.drawWidth,
+    this.drawHeight
 );
 }else{
     c.drawImage(
@@ -50,15 +83,13 @@ export class entity{
     this.spriteHeight,
     this.position.x,
     this.position.y,
-    70,
-    70
+    this.drawWidth,
+    this.drawHeight
+
 );
 }
 c.restore();
-   const currentAnimation = this.animations[this.animation_status];
-
-this.row = currentAnimation.row;
-this.totalFrame = currentAnimation.frames;
+   
    
    
            
@@ -69,7 +100,7 @@ this.totalFrame = currentAnimation.frames;
     this.frame++;
     this.animationDelay = 0;
 
-    if (this.frame > this.totalFrame) {
+    if (this.frame >= this.totalFrame) {
         this.frame = 0;
     }
     

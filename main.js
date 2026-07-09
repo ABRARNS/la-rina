@@ -1,5 +1,5 @@
 import{entity}from "./entity.js";
-import {shadow}from "./charecter.js"
+import {shadow,soldier}from "./charecter.js"
 import "./movements.js";
 import "./bgSounds.js";
 import "./ai_opponent.js"
@@ -13,10 +13,15 @@ canvas.height = window.innerHeight
 export const c = canvas.getContext('2d')
 import "./map_animation.js"
 //all constants here
+export let total_win = Number(localStorage.getItem("total_win")) || 0;
+export let total_lose = Number(localStorage.getItem("total_lose")) || 0;
+export let total_dealt = Number(localStorage.getItem("total_dealt")) || 0;
+export let total_taken = Number(localStorage.getItem("total_taken")) || 0;
 
 const ground_y = 435;
 const c_width = canvas.width
 const c_height = canvas.height
+let scoreSaved = false;
 //map
 import { new_map } from "./map_animation.js";
 
@@ -30,11 +35,11 @@ export const player = new entity({
     health:100,
     status:"normal",
     animation_status:"idle",
-    damage:2,
     Issave:false,
-    speed:10,
+   
     ...shadow
 })
+console.log(canvas);
 //create villan
 export const player2 = new entity({
     position:{x:500,y:ground_y},
@@ -55,7 +60,7 @@ export let health_box_2_height = 10;
 
 export let health_box_1_width = player.health;
 export let health_box_1_height = 10;
-let gameOver = false;
+let gameOver1 = false;
 function animate(){
  c.clearRect(0,0,c_width,c_height)
  requestAnimationFrame(animate)
@@ -79,32 +84,38 @@ c.fillRect(20,50, player.health, 10)
 c.fillRect(canvas.width-120,50,player2.health, 10)
 //game over
 if(player.health <= 0 || player2.health <= 0){
-        gameOver = true;
-    }
-     
-    if(gameOver){
-        if(player2.health <= 0){
-            c.font = "50px Arial";
-        c.fillText("GAME OVER", 200,100);
-        c.fillText("You Win", 200, 150);
-        c.fillText(`Your Health: ${player.health}`, 200, 200);
-        return;
-        } 
-        if(player.health <= 0){
-          c.font = "50px Arial";
-        c.fillText("GAME OVER", 200,100);
-        c.fillText("You Lose", 200, 150);
-        c.fillText(`Opponent Health: ${player2.health}`, 200, 200);
-        return;
-        }
+        gameOver1 = true;
         
     }
+     
+if (gameOver1) {
+
+    if (player2.health <= 0) {
+        
+        c.font = "50px Arial";
+        c.fillText("GAME OVER", 200, 100);
+        c.fillText("You Win", 200, 150);
+        c.fillText(`Your Health: ${player.health}`, 200, 200);
+
+        return;
+    }
+
+    if (player.health <= 0) {
+        
+        c.font = "50px Arial";
+        c.fillText("GAME OVER", 200, 100);
+        c.fillText("You Lose", 200, 150);
+        c.fillText(`Opponent Health: ${player2.health}`, 200, 200);
+
+        return;
+    }
+}
 
 }
 canvas.addEventListener("click", () => {
-    if (gameOver) {
+    if (gameOver1) {
         resetGame();
-        gameOver = false;
+        gameOver1= false;
     }
 });
 
@@ -124,6 +135,24 @@ function resetGame() {
     
 }
 
+//sprite selection
+let selected_sprite = localStorage.getItem("character")
+if(selected_sprite === "shadow_dog"){
+   player.s_c(shadow)
+}
+if(selected_sprite === "soldier1"){
+    player.s_c(soldier)
+}
+// enemy selection
+let selected_enemy = localStorage.getItem("enemy")
+if(selected_enemy === "shadow_dog"){
+   player2.s_e(shadow)
+}
+if(selected_enemy === "soldier1"){
+    player2.s_e(soldier)
+}
+console.log(localStorage.getItem("character"))
+console.log(localStorage.getItem("enemy"))
 //canvad resize issue fixed 
 window.addEventListener('resize',()=>{
     canvas.width = window.innerWidth;

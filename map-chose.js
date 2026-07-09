@@ -5,6 +5,7 @@ const japan1 = document.getElementById("map_chose_1")
 const spain1 = document.getElementById("map_chose_2")
 const italy1 = document.getElementById("map_chose_3")
 const barca1 = document.getElementById("map_chose_4")
+const bd1 = document.getElementById("map_chose_5")
 if (smap) {
     smap.addEventListener("click", () => {
         d1.classList.remove("d2");
@@ -31,6 +32,12 @@ if(italy1){
 if(barca1){
     barca1.addEventListener("click",()=>{
         localStorage.setItem("map", "barca1.png");
+        
+    })
+}
+if(bd1){
+    bd1.addEventListener("click",()=>{
+        localStorage.setItem("map", "bangla1.jpeg");
         
     })
 }

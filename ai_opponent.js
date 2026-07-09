@@ -1,6 +1,7 @@
 import { player, player2, canvas } from "./main.js";
 import { punchSound1, runSound1 } from "./bgSounds.js";
-
+let taken = Number(localStorage.getItem("total_taken")) || 0;
+let  deaths= Number(localStorage.getItem("total_lose")) || 0;
 let timer = 0;
 
 export function aiUpdate() {
@@ -71,6 +72,14 @@ export function aiUpdate() {
                 if (Math.floor(Math.random() * 10) > 6) {
                     punchSound1();
                     player.health -= player2.damage;
+                    taken += player2.damage;
+                    localStorage.setItem("total_taken", taken);
+                    if(player.health <= 0){
+                        deaths += 1
+                        localStorage.setItem("total_lose",deaths)
+                    }
+                    if (player.health < 0) {
+                    player.health = 0;
                 }
                 timer = 0;
             }
@@ -122,4 +131,4 @@ export function aiUpdate() {
     } else {
         player2.Issave = false;
     }
-}
+}}
