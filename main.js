@@ -1,5 +1,5 @@
 import{entity}from "./entity.js";
-import {shadow,soldier}from "./charecter.js"
+import {shadow,soldier,olly}from "./charecter.js"
 import "./movements.js";
 import "./bgSounds.js";
 import "./ai_opponent.js"
@@ -18,7 +18,7 @@ export let total_lose = Number(localStorage.getItem("total_lose")) || 0;
 export let total_dealt = Number(localStorage.getItem("total_dealt")) || 0;
 export let total_taken = Number(localStorage.getItem("total_taken")) || 0;
 
-const ground_y = 435;
+const ground_y = 325;
 const c_width = canvas.width
 const c_height = canvas.height
 let scoreSaved = false;
@@ -42,13 +42,12 @@ export const player = new entity({
 console.log(canvas);
 //create villan
 export const player2 = new entity({
-    position:{x:500,y:ground_y},
+   position:{x:1000,y:ground_y},
     health:100,
     status:"normal",
     animation_status:"idle",
-    damage:2,
     Issave:false,
-    speed:2.5,
+   
     ...shadow
 })
 if(player.health <=0){
@@ -143,6 +142,9 @@ if(selected_sprite === "shadow_dog"){
 if(selected_sprite === "soldier1"){
     player.s_c(soldier)
 }
+if(selected_sprite === "olly"){
+    player.s_c(olly)
+}
 // enemy selection
 let selected_enemy = localStorage.getItem("enemy")
 if(selected_enemy === "shadow_dog"){
@@ -150,6 +152,9 @@ if(selected_enemy === "shadow_dog"){
 }
 if(selected_enemy === "soldier1"){
     player2.s_e(soldier)
+}
+if(selected_sprite === "olly"){
+    player.s_e(olly)
 }
 console.log(localStorage.getItem("character"))
 console.log(localStorage.getItem("enemy"))

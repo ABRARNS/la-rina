@@ -4,7 +4,7 @@ const ss = document.getElementById("ss")
 const d1 = document.getElementById("d2")
 const shadow_dog = document.getElementById("s_chose_1")
 const violence_enjoyer= document.getElementById("s_chose_2")
-
+const olly = document.getElementById("s_chose_3")
 
 if(ss){
    ss.addEventListener("click", () => {
@@ -18,5 +18,8 @@ if(ss){
   })
   violence_enjoyer.addEventListener("click",()=>{
     localStorage.setItem("character", "soldier1");
+  })
+  olly.addEventListener("click",()=>{
+    localStorage.setItem("character", "olly");
   })
 }

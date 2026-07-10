@@ -1,5 +1,5 @@
 import{entity} from "./entity.js"
-let ground_y = 435
+let ground_y = 325
 export const soldier = {
     speed: 3,
     damage:18,
@@ -7,8 +7,8 @@ export const soldier = {
 
     spriteWidth: 100,
     spriteHeight: 100,
-    drawWidth: 150,
-    drawHeight: 150,
+    drawWidth: 250,
+    drawHeight: 250,
     health:100,
     animations: {
         idle: {
@@ -72,3 +72,44 @@ export const shadow = {
     }
     
 }
+export const olly = {
+    speed: 2.5,
+    damage:8,
+    sprite: "OLLY.png",
+
+    spriteWidth: 100,
+    spriteHeight: 100,
+    drawWidth: 250,
+    drawHeight: 250,
+    health:100,
+    animations: {
+        idle: {
+            row: 0,
+            frames: 6
+        },
+        run: {
+            row: 1,
+            frames: 8
+        },
+        punch2: {
+            row: 2,
+            frames: 6
+        },
+        punch: {
+            row: 3,
+            frames: 6
+        },
+        hurt: {
+            row: 4,
+            frames: 4
+        },
+        death: {
+            row: 5,
+            frames: 6
+        },
+        shield:{
+            row:null,
+            frames:null
+        }
+    }
+};
