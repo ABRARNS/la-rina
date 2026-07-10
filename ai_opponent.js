@@ -30,10 +30,10 @@ export function aiUpdate() {
         runSound1();
     }else if (distance <= 37 && Math.random() > 0.5) {
         player2.status = "shield";
-        player2.animation_status = "shield";
+        
     }else if (distance <= 37) {
     player2.status = "attack";
-     player2.animation_status = "punch";
+     
     } else {
      player2.status = "idle";
     player2.animation_status = "idle";
@@ -72,6 +72,7 @@ export function aiUpdate() {
                 if (Math.floor(Math.random() * 10) > 6) {
                     punchSound1();
                     player.health -= player2.damage;
+                    player2.animation_status = "punch";
                     taken += player2.damage;
                     localStorage.setItem("total_taken", taken);
                     if(player.health <= 0){
@@ -128,6 +129,7 @@ export function aiUpdate() {
         }
 
         player2.Issave = true;
+        player2.animation_status = "shield";
     } else {
         player2.Issave = false;
     }
