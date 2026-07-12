@@ -17,7 +17,7 @@ export function aiUpdate() {
     let distance = Math.abs(position1 - position2);
 
     // Decide AI state
-    if (player2.health < 50) {
+    if (player2.health < 30) {
         player2.status = "runaway";
         player2.animation_status = "run";
         runSound1();
@@ -29,7 +29,7 @@ export function aiUpdate() {
         player2.status = "comeback";
         player2.animation_status = "run";
         runSound1();
-    } else if (distance <= 37 && Math.random() > 0.5) {
+    } else if (distance <= 20 && Math.random() > 0.2) {
         player2.status = "shield";
     } else if (distance <= 30) {
         player2.status = "attack";
@@ -81,10 +81,7 @@ export function aiUpdate() {
                     taken += player2.damage;
                     localStorage.setItem("total_taken", taken);
 
-                    if (player.health <= 0) {
-                        deaths++;
-                        localStorage.setItem("total_lose", deaths);
-                    }
+                    
 
                     if (player.health < 0) {
                         player.health = 0;
@@ -101,7 +98,10 @@ export function aiUpdate() {
             player2.Issave = false;
         }
     }
-
+if (player.health <= 0) {
+                        deaths++;
+                        localStorage.setItem("total_lose", deaths);
+                    }
     //run away
     if (player2.status === "runaway") {
 
@@ -120,16 +120,19 @@ export function aiUpdate() {
 
         if (position1 > position2) {
             if (player2.position.x > LEFT_LIMIT) {
-                player2.position.x -= player2.speed * 2;
+                player2.position.x -= player.speed * 2;
                 player2.facing = "left";
             }
         } else {
             if (player2.position.x < RIGHT_LIMIT) {
-                player2.position.x += player2.speed * 2;
+                player2.position.x += player.speed * 2;
                 player2.facing = "right";
             }
+            if(player2.position.x === LEFT_LIMIT || player2.position.x === RIGHT_LIMIT){
+                player2.animation_status = "idle"
+            }
         }
-
+           
         player2.animation_status = "run";
     }
 

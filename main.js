@@ -76,11 +76,23 @@ function animate(){
  // health for player2
  c.fillText(`Opponent Health:${player2.health}`,canvas.width - 150,40)
 // box health level for player1
+//x=20
+//y = 50
+//w= player.health
+//h=10
+let health_bar = new Image()
+health_bar.src = "health-bar.png"
 
-c.fillRect(20,50, player.health, 10)
+c.drawImage(health_bar,20,20, player.health, 70)
 // box health level for player2
 
-c.fillRect(canvas.width-120,50,player2.health, 10)
+//x= canvas.width-120
+//y=50,
+//w = player2.health
+//h = 10
+
+
+c.drawImage(health_bar,canvas.width-120,20,player2.health,70)
 //game over
 if(player.health <= 0 || player2.health <= 0){
         gameOver1 = true;
@@ -121,15 +133,15 @@ canvas.addEventListener("click", () => {
 //Game Over
 function resetGame() {
    
-        player.position.x = 200;
-    player.position.y = ground_y;
-    player.health = 100;
+       if (player2.health <= 0) {
+    window.location.href = "win.html";
+    return;
+}
 
-    player2.position.x = 500;
-    player2.position.y = ground_y;
-    player2.health = 100;
-    
-    
+if (player.health <= 0) {
+    window.location.href = "lose.html";
+    return;
+}
 
     
 }
@@ -153,8 +165,8 @@ if(selected_enemy === "shadow_dog"){
 if(selected_enemy === "soldier1"){
     player2.s_e(soldier)
 }
-if(selected_sprite === "olly"){
-    player.s_e(olly)
+if(selected_enemy === "olly"){
+    player2.s_e(olly)
 }
 console.log(localStorage.getItem("character"))
 console.log(localStorage.getItem("enemy"))

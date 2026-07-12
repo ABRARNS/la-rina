@@ -29,15 +29,14 @@ window.addEventListener('keydown',(e)=>{
         punchSound1()
         let distance = Math.abs(player.position.x - player2.position.x)
         if(!player2.Issave){
-          if(distance <= 40){
-            
-            player2.health -= player.damage
+          if(distance <= 30){
+            if(Math.floor(Math.random() * 10) > 4){
+                player2.health -= player.damage
             dealt += player.damage
             localStorage.setItem("total_dealt",dealt)
-            if(player2.health <= 0){
-                wins +=1
-                localStorage.setItem("total_wins",wins)
+            
             }
+            
         }
         if(player.health <= 0 ){
             player.health = 0;
@@ -49,6 +48,10 @@ window.addEventListener('keydown',(e)=>{
         
        player.animation_status = "punch"
     }
+    if(player2.health <= 0){
+                wins +=1
+                localStorage.setItem("total_win",wins)
+            }
     if(key === "KeyK"){
      player.Issave = true;
      player.animation_status = "shield"
