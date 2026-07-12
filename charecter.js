@@ -1,5 +1,5 @@
 import{entity} from "./entity.js"
-let ground_y = 325
+ let ground_y = 325
 export const soldier = {
     speed: 3,
     damage:18,

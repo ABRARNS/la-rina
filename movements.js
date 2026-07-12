@@ -1,8 +1,14 @@
 import{entity} from "./entity.js"
 import{punchSound1,runSound1} from "./bgSounds.js"
-import{c,player,player2,canvas,health_box_2_width,health_box_2_height,health_box_1_width,health_box_1_height,total_dealt,total_taken} from "./main.js"
+import{c,player,player2,canvas,health_box_2_width,health_box_2_height,health_box_1_width,health_box_1_height,total_dealt,total_taken,ground_y} from "./main.js"
 let dealt = Number(localStorage.getItem("total_dealt")) || 0;
 let wins= Number(localStorage.getItem("total_win")) || 0;
+const mobile =navigator.maxTouchPoints > 0 || window.matchMedia("(pointer: coarse)").matches;
+
+const left = document.getElementById("left")
+const right = document.getElementById("right") 
+const shield = document.getElementById("shield")
+const punch = document.getElementById("punch") 
 window.addEventListener('keydown',(e)=>{
     let key = e.code
     
@@ -12,7 +18,6 @@ window.addEventListener('keydown',(e)=>{
         runSound1()
         player.position.x += player.speed
         player.animation_status = "run"
-        player.row = 3;
     }
     if(key === "KeyA" || key === "ArrowLeft"){
         player.status ="run";
@@ -87,3 +92,66 @@ window.addEventListener("keyup", (e) => {
     }
 
 });
+// mobile controls
+addEventListener("touchstart",()=>{
+    if(mobile){
+    document.getElementById("mobile-controls").style.display="flex";
+    console.log("mobile")
+    player.position.y=canvas.height - 170;
+    screen.orientation.lock("landscape").catch(() => {});
+}
+})
+
+right.addEventListener("touchstart",()=>{
+        player.facing = "right"
+        runSound1()
+        player.position.x += player.speed
+        player.animation_status = "run"
+});
+right.addEventListener("touchend",()=>{
+    player.animation_status="idle";
+});
+left.addEventListener("touchstart",()=>{
+        player.facing = "left"
+        runSound1()
+        player.position.x += player.speed
+        player.animation_status = "run"
+});
+left.addEventListener("touchend",()=>{
+    player.animation_status="idle";
+});
+shield.addEventListener("touchstart",()=>{
+    player.Issave=true;
+    player.animation_status = "shield"
+});
+shield.addEventListener("touchend",()=>{
+    player.Issave=false;
+    player.animation_status = "idles"
+});
+punch.addEventListener("touchstart",()=>{
+    player.status ="punch"
+        punchSound1()
+        let distance = Math.abs(player.position.x - player2.position.x)
+        if(!player2.Issave){
+          if(distance <= 30){
+            if(Math.floor(Math.random() * 10) > 4){
+                player2.health -= player.damage
+            dealt += player.damage
+            localStorage.setItem("total_dealt",dealt)
+            
+            }
+            
+        }
+        if(player.health <= 0 ){
+            player.health = 0;
+        }
+        if(player2.health <= 0){
+            player2.health = 0;
+        }
+        }
+        
+       player.animation_status = "punch"
+})
+punch.addEventListener("touchend",()=>{
+    player.animation_status = "idle"
+})
