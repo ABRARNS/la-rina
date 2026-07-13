@@ -2,7 +2,7 @@ import { entity } from "./entity.js";
 
 const ss = document.getElementById("ss")
 const d1 = document.getElementById("d2")
-const shadow_dog = document.getElementById("s_chose_1")
+const skello = document.getElementById("s_chose_1")
 const violence_enjoyer= document.getElementById("s_chose_2")
 const olly  = document.getElementById("s_chose_3")
 
@@ -13,8 +13,8 @@ if(ss){
     });
 }
 if(ss){
-  shadow_dog.addEventListener("click",()=>{
-   localStorage.setItem("enemy", "shadow_dog");
+  skello.addEventListener("click",()=>{
+   localStorage.setItem("enemy", "skello");
   })
   violence_enjoyer.addEventListener("click",()=>{
     localStorage.setItem("enemy", "soldier1");

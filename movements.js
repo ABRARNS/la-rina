@@ -93,43 +93,69 @@ window.addEventListener("keyup", (e) => {
 
 });
 // mobile controls
+let holding_left = false 
+let holding_right = false
 addEventListener("touchstart",()=>{
     if(mobile){
     document.getElementById("mobile-controls").style.display="flex";
     console.log("mobile")
-    player.position.y = 150
-    player2.position.y = 150
     screen.orientation.lock("landscape").catch(() => {});
 }
 })
 
-right.addEventListener("touchstart",()=>{
-        player.facing = "right"
-        runSound1()
-        player.position.x += player.speed
-        player.animation_status = "run"
+right.addEventListener("touchstart", (e) => {
+    e.preventDefault();
+    holding_right = true;
+    player.facing = "right";
+    player.status = "run";
+    player.animation_status = "run";
+});
+right.addEventListener("touchmove", (e) => {
+    e.preventDefault();
+    if (holding_right) {
+        player.facing = "right";
+        player.position.x += player.speed;
+        player.animation_status = "run";
+    }
 });
 right.addEventListener("touchend",()=>{
     player.animation_status="idle";
+    player.holding_right = false
 });
-left.addEventListener("touchstart",()=>{
+left.addEventListener("touchstart",(e)=>{
+        e.preventDefault()
+        holding_left = true
         player.facing = "left"
         runSound1()
-        player.position.x += player.speed
+        player.position.x -= player.speed
         player.animation_status = "run"
+});
+left.addEventListener("touchmove", (e) => {
+    e.preventDefault();
+    if (holding_left) {
+        player.facing = "left";
+        player.position.x -= player.speed;
+        player.animation_status = "run";
+    }
 });
 left.addEventListener("touchend",()=>{
     player.animation_status="idle";
+    holding_left = false
 });
-shield.addEventListener("touchstart",()=>{
+shield.addEventListener("touchstart",(e)=>{
+    e.preventDefault()
     player.Issave=true;
     player.animation_status = "shield"
 });
-shield.addEventListener("touchend",()=>{
+shield.addEventListener("touchend",(e)=>{
+    e.preventDefault()
     player.Issave=false;
-    player.animation_status = "idles"
+    player.animation_status = "idle"
+
 });
-punch.addEventListener("touchstart",()=>{
+punch.addEventListener("touchstart",(e)=>{
+    e.preventDefault()
+    
     player.status ="punch"
         punchSound1()
         let distance = Math.abs(player.position.x - player2.position.x)
@@ -153,6 +179,7 @@ punch.addEventListener("touchstart",()=>{
         
        player.animation_status = "punch"
 })
-punch.addEventListener("touchend",()=>{
+punch.addEventListener("touchend",(e)=>{
+    e.preventDefault()
     player.animation_status = "idle"
 })
