@@ -6,12 +6,36 @@
     <title>La Riña</title>
     <link rel="icon" type="image/png" href="logo.png">
 <style>
-    canvas,body{
-        margin:0;
-        overflow:hidden;
+    canvas, body {
+        margin: 0;
+        overflow: hidden;
     }
-    #mobile-contorls{
-        display:none;
+
+    #mobile-controls {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        display: flex;
+        gap: 10px;
+        z-index: 10;
+        pointer-events: auto;
+    }
+
+    #mobile-controls button {
+        font-size: 24px;
+        padding: 10px 14px;
+        cursor: pointer;
+    }
+
+    #actions {
+        display: flex;
+        gap: 10px;
+    }
+
+    @media (min-width: 768px) {
+        #mobile-controls {
+            display: none;
+        }
     }
 </style>
 </head>

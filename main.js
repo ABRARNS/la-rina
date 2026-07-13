@@ -18,7 +18,7 @@ export let total_lose = Number(localStorage.getItem("total_lose")) || 0;
 export let total_dealt = Number(localStorage.getItem("total_dealt")) || 0;
 export let total_taken = Number(localStorage.getItem("total_taken")) || 0;
 
- export let ground_y = canvas.height - 170;;
+ export let ground_y = 300;
 const c_width = canvas.width
 const c_height = canvas.height
 let scoreSaved = false;

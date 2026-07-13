@@ -97,7 +97,8 @@ addEventListener("touchstart",()=>{
     if(mobile){
     document.getElementById("mobile-controls").style.display="flex";
     console.log("mobile")
-    player.position.y=canvas.height - 170;
+    player.position.y = 150
+    player2.position.y = 150
     screen.orientation.lock("landscape").catch(() => {});
 }
 })

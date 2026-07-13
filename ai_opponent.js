@@ -152,5 +152,5 @@ if (player.health <= 0) {
         player2.Issave = false;
     }
 
-    console.log(player2.status, player2.position.x, player2.health);
+    
 }
