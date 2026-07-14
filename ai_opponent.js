@@ -77,7 +77,7 @@ export function aiUpdate() {
                     player2.animation_status = "punch";
 
                     player.health -= player2.damage;
-
+                    player.animation_status = "hurt"
                     taken += player2.damage;
                     localStorage.setItem("total_taken", taken);
 
@@ -111,6 +111,7 @@ if (player.health <= 0) {
             if (Math.floor(Math.random() * 10) > 6) {
                         punchSound1();
                         player.health -= player2.damage;
+                        player.animation_status = "hurt"
                         player2.animation_status = "punch"
                     }
                     timer = 0;

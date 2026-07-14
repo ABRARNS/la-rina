@@ -77,7 +77,10 @@ export const skello = {
             row: 5,
             frames: 6
         },
-       
+       hurt:{
+        row:null,
+        frames:null
+       }
     }
 };
 export const olly = {
@@ -118,6 +121,44 @@ export const olly = {
         shield:{
             row:null,
             frames:null
+        }
+    }
+};
+export const red_bobo = {
+    speed: 6,
+    damage:16,
+    sprite: "red_bobo.png",
+
+    spriteWidth: 100,
+    spriteHeight: 100,
+    drawWidth: 250,
+    drawHeight: 250,
+    health:100,
+    animations: {
+        idle: {
+            row: 0,
+            frames: 6
+        },
+        run: {
+            row: 1,
+            frames: 8
+        },
+       
+        punch: {
+            row: 3,
+            frames: 6
+        },
+        hurt: {
+            row: 4,
+            frames: 4
+        },
+        death: {
+            row: 5,
+            frames: 6
+        },
+        shield:{
+            row:2,
+            frames:7
         }
     }
 };

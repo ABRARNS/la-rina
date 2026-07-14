@@ -1,5 +1,5 @@
 import{entity}from "./entity.js";
-import {skello,soldier,olly}from "./charecter.js"
+import {skello,soldier,olly,red_bobo}from "./charecter.js"
 import "./movements.js";
 import "./bgSounds.js";
 import "./ai_opponent.js"
@@ -157,6 +157,9 @@ if(selected_sprite === "soldier1"){
 if(selected_sprite === "olly"){
     player.s_c(olly)
 }
+if(selected_sprite === "red_bobo"){
+    player.s_c(red_bobo)
+}
 // enemy selection
 let selected_enemy = localStorage.getItem("enemy")
 if(selected_enemy === "skello"){
@@ -168,6 +171,7 @@ if(selected_enemy === "soldier1"){
 if(selected_enemy === "olly"){
     player2.s_e(olly)
 }
+
 console.log(localStorage.getItem("character"))
 console.log(localStorage.getItem("enemy"))
 //canvad resize issue fixed 

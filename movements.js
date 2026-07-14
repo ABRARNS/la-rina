@@ -37,6 +37,7 @@ window.addEventListener('keydown',(e)=>{
           if(distance <= 30){
             if(Math.floor(Math.random() * 10) > 4){
                 player2.health -= player.damage
+                player2.animation_status = "hurt"
             dealt += player.damage
             localStorage.setItem("total_dealt",dealt)
             
