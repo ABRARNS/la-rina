@@ -6,7 +6,7 @@ const skello = document.getElementById("s_chose_1")
 const violence_enjoyer= document.getElementById("s_chose_2")
 const olly = document.getElementById("s_chose_3")
 const red_bobo = document.getElementById("s_chose_4")
-
+const bloody_goofy = document.getElementById("s_chose_5")
 if(ss){
    ss.addEventListener("click", () => {
         d1.classList.remove("d2");
@@ -25,5 +25,8 @@ if(ss){
   })
   red_bobo.addEventListener("click",()=>{
     localStorage.setItem("character","red_bobo")
+  })
+  bloody_goofy.addEventListener("click",()=>{
+    localStorage.setItem("character","bloody_goofy")
   })
 }

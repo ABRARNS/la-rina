@@ -4,7 +4,9 @@ larina_1.loop = true
 larina_1.volume = 0.03;
 const a_punch =  new Audio("punchSound1.mp3")
 const a_walk = new Audio("runSound1.mp3")
+const shield1 = new Audio("shield-sound1.mp3")
 a_punch.volume = 1
+shield1.volume = 1
 window.addEventListener('click',()=>{
   larina_1.play()
   
@@ -14,4 +16,7 @@ export function punchSound1(){
 }
 export function runSound1(){
   a_walk.play()
+}
+export function shieldSound1(){
+  shield1.play()
 }

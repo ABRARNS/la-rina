@@ -1,5 +1,5 @@
 import{entity}from "./entity.js";
-import {skello,soldier,olly,red_bobo}from "./charecter.js"
+import {skello,soldier,olly,red_bobo,bloody_goofy}from "./charecter.js"
 import "./movements.js";
 import "./bgSounds.js";
 import "./ai_opponent.js"
@@ -102,7 +102,7 @@ if(player.health <= 0 || player2.health <= 0){
 if (gameOver1) {
 
     if (player2.health <= 0) {
-        
+        setTimeout(()=> window.location.href = "win.html",1000)
         c.font = "50px Arial";
         c.fillText("GAME OVER", 200, 100);
         c.fillText("You Win", 200, 150);
@@ -112,7 +112,7 @@ if (gameOver1) {
     }
 
     if (player.health <= 0) {
-        
+        setTimeout(()=> window.location.href = "lose.html",1000)
         c.font = "50px Arial";
         c.fillText("GAME OVER", 200, 100);
         c.fillText("You Lose", 200, 150);
@@ -123,28 +123,9 @@ if (gameOver1) {
 }
 
 }
-canvas.addEventListener("click", () => {
-    if (gameOver1) {
-        resetGame();
-        gameOver1= false;
-    }
-});
 
-//Game Over
-function resetGame() {
-   
-       if (player2.health <= 0) {
-    window.location.href = "win.html";
-    return;
-}
 
-if (player.health <= 0) {
-    window.location.href = "lose.html";
-    return;
-}
 
-    
-}
 
 //sprite selection
 let selected_sprite = localStorage.getItem("character")
@@ -160,6 +141,9 @@ if(selected_sprite === "olly"){
 if(selected_sprite === "red_bobo"){
     player.s_c(red_bobo)
 }
+if(selected_sprite === "bloody_goofy"){
+    player.s_c(bloody_goofy)
+}
 // enemy selection
 let selected_enemy = localStorage.getItem("enemy")
 if(selected_enemy === "skello"){
@@ -170,6 +154,12 @@ if(selected_enemy === "soldier1"){
 }
 if(selected_enemy === "olly"){
     player2.s_e(olly)
+}
+if(selected_enemy === "red_bobo"){
+    player2.s_e(red_bobo)
+}
+if(selected_enemy === "bloody_goofy"){
+    player2.s_e(bloody_goofy)
 }
 
 console.log(localStorage.getItem("character"))

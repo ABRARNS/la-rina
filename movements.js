@@ -1,5 +1,5 @@
 import{entity} from "./entity.js"
-import{punchSound1,runSound1} from "./bgSounds.js"
+import{punchSound1,runSound1,shieldSound1} from "./bgSounds.js"
 import{c,player,player2,canvas,health_box_2_width,health_box_2_height,health_box_1_width,health_box_1_height,total_dealt,total_taken,ground_y} from "./main.js"
 let dealt = Number(localStorage.getItem("total_dealt")) || 0;
 let wins= Number(localStorage.getItem("total_win")) || 0;
@@ -61,6 +61,7 @@ window.addEventListener('keydown',(e)=>{
     if(key === "KeyK"){
      player.Issave = true;
      player.animation_status = "shield"
+     shieldSound1()
     } 
      
     
@@ -101,6 +102,8 @@ addEventListener("touchstart",()=>{
     document.getElementById("mobile-controls").style.display="flex";
     console.log("mobile")
     screen.orientation.lock("landscape").catch(() => {});
+     player.position.y  = 175
+     player2.position.y = 175
 }
 })
 
@@ -110,6 +113,8 @@ right.addEventListener("touchstart", (e) => {
     player.facing = "right";
     player.status = "run";
     player.animation_status = "run";
+    player.position.y  = 175
+    player2.position.y = 175
 });
 right.addEventListener("touchmove", (e) => {
     e.preventDefault();
@@ -117,6 +122,8 @@ right.addEventListener("touchmove", (e) => {
         player.facing = "right";
         player.position.x += player.speed;
         player.animation_status = "run";
+         player.position.y  = 175
+    player2.position.y = 175
     }
 });
 right.addEventListener("touchend",()=>{

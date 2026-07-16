@@ -6,6 +6,8 @@ const spain1 = document.getElementById("map_chose_2")
 const italy1 = document.getElementById("map_chose_3")
 const barca1 = document.getElementById("map_chose_4")
 const bd1 = document.getElementById("map_chose_5")
+const france1 = document.getElementById("map_chose_6")
+const istanbul1 = document.getElementById("map_chose_7")
 if (smap) {
     smap.addEventListener("click", () => {
         d1.classList.remove("d2");
@@ -38,6 +40,18 @@ if(barca1){
 if(bd1){
     bd1.addEventListener("click",()=>{
         localStorage.setItem("map", "bangla1.jpeg");
+        
+    })
+}
+if(france1){
+    france1.addEventListener("click",()=>{
+        localStorage.setItem("map", "france1.png");
+        
+    })
+}
+if(istanbul1){
+    istanbul1.addEventListener("click",()=>{
+        localStorage.setItem("map", "istanbul1.png");
         
     })
 }

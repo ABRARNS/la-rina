@@ -1,5 +1,5 @@
 import { player, player2, canvas } from "./main.js";
-import { punchSound1, runSound1 } from "./bgSounds.js";
+import { punchSound1, runSound1,shieldSound1 } from "./bgSounds.js";
 let taken = Number(localStorage.getItem("total_taken")) || 0;
 let  deaths= Number(localStorage.getItem("total_lose")) || 0;
 let timer = 0;
@@ -148,7 +148,7 @@ if (player.health <= 0) {
 
         player2.Issave = true;
         player2.animation_status = "shield";
-
+        shieldSound1()
     } else {
         player2.Issave = false;
     }
